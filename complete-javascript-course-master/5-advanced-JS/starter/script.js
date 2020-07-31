@@ -136,9 +136,9 @@ var questions = [q1, q2, q3];
 function ask() {
   var randChoice = Math.floor(Math.random() * 3);
   console.log(questions[randChoice].question);
-  console.log(questions[randChoice].choices[0]);
-  console.log(questions[randChoice].choices[1]);
-  console.log(questions[randChoice].choices[2]);
+  for (var i = 0; i < questions.length; i++) {
+    console.log(questions[randChoice].choices[i]);
+  }
 
   var userAnswer = prompt("What is your answer?");
 
