@@ -126,11 +126,27 @@ var Question = function(question, choices, answer) {
 }
 
 var q1 = new Question("How many continents are there", ['0 - Seven', '1 - Two', '2 - Six'], 0);
-var q2 = new Question("How many eyes does the average human have", ['0 - One', '1 - Two'], 1);
-var q3 = new Question("What do you use to make a room brighter", ['0 - Pillow', '1 - Fork', '3 - Light'], 2);
+var q2 = new Question("How many eyes does the average human have", ['0 - One', '1 - Two', '2 - None'], 1);
+var q3 = new Question("What do you use to make a room brighter", ['0 - Pillow', '1 - Fork', '2 - Light'], 2);
 
 var questions = [q1, q2, q3];
 
-var randChoice = Math.floor(Math.random() * 3);
 
 
+function ask() {
+  var randChoice = Math.floor(Math.random() * 3);
+  console.log(questions[randChoice].question);
+  console.log(questions[randChoice].choices[0]);
+  console.log(questions[randChoice].choices[1]);
+  console.log(questions[randChoice].choices[2]);
+
+  var userAnswer = prompt("What is your answer?");
+
+  if (userAnswer == questions[randChoice].answer) {
+    console.log('Correct');
+  } else {
+    console.log('Incorrect');
+  }
+}
+
+ask();
