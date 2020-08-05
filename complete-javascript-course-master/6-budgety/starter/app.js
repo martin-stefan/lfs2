@@ -136,6 +136,29 @@ var UIController = (function() {
     btn: '.add__btn'
   };
 
+  var formatNumber= function(num, type) {
+    num = Math.abs(num);
+    num = num.toFixed(2);
+
+    var numSplit = num.split('.');
+
+    var integer = numSplit[0];
+    var dec = numSplit[1];
+    var sign;
+
+    if (integer.length > 3) {
+      integer = integer.substr(0, integer.length - 3) + ',' + integer.substr(integer.length - 3, 3);
+    }
+
+    return  (type === 'exp' ? sign = '-' : sign = '+') + ' ' + integer + '.' + dec;
+  };
+
+  var nodeList = function(list, callback) {
+    for (var i = 0; i < list.length; i++) {
+      callback(list[i], i);
+    }
+  };
+
   return {
     getInput: function() {
       return {
@@ -150,15 +173,15 @@ var UIController = (function() {
 
       if (type === "inc") {
         element = '.income__list'
-        html = '<div class="item clearfix" id="inc-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">+ %value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+        html = '<div class="item clearfix" id="inc-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
       } else if (type === "exp") {
         element = '.expenses__list';
-        html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">- %value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+        html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
       }
 
       newHtml = html.replace('%id%', obj.id);
       newHtml = newHtml.replace('%description%', obj.description);
-      newHtml = newHtml.replace('%value%', obj.value);
+      newHtml = newHtml.replace('%value%', formatNumber(obj.value, type));
       
       document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
 
@@ -181,9 +204,12 @@ var UIController = (function() {
     },
 
     displayBudget: function(obj) {
-      document.querySelector('.budget__value').textContent = obj.budget;
-      document.querySelector('.budget__income--value').textContent = obj.totalInc;
-      document.querySelector('.budget__expenses--value').textContent = obj.totalExp;
+      var type;
+
+      obj.budget > 0 ? type = 'inc' : type = 'exp';
+      document.querySelector('.budget__value').textContent =formatNumber(obj.budget, type);
+      document.querySelector('.budget__income--value').textContent = formatNumber(obj.totalInc, 'inc');
+      document.querySelector('.budget__expenses--value').textContent = formatNumber(obj.totalExp, 'exp');
       document.querySelector('.budget__expenses--percentage').textContent = obj.percentage + '%';
 
       if (obj.percentage > 0) {
@@ -197,11 +223,7 @@ var UIController = (function() {
     displayPercentages: function(percentages) {
       var fields = document.querySelectorAll(".item__percentage");
       
-      var nodeList = function(list, callback) {
-        for (var i = 0; i < list.length; i++) {
-          callback(list[i], i);
-        }
-      };
+      
 
       nodeList(fields, function(current, index) {
         if (percentages[index] > 0) {
@@ -211,6 +233,29 @@ var UIController = (function() {
         }
       });
     },
+
+    displayMonth: function() {
+      var now = new Date();
+      months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      var year = now.getFullYear();
+      var month = now.getMonth();
+      document.querySelector(".budget__title--month").textContent = months[month] + ", " + year;
+    },
+
+    changeType: function() {
+      var fields = document.querySelectorAll(
+        DOMStrings.type + "," + 
+        DOMStrings.desc + "," + 
+        DOMStrings.inputValue
+      );
+
+      nodeList(fields, function(cur) {
+        cur.classList.toggle('red-focus');
+      })
+
+      document.querySelector('.add__btn').classList.toggle('red');
+    },
+
 
     getDOMStrings: function() {
       return DOMStrings;
@@ -232,6 +277,8 @@ var controller = (function(budgetCtrl, UICtrl) {
     });
 
     document.querySelector('.container').addEventListener('click', ctrlDelItem);
+
+    document.querySelector(DOM.type).addEventListener('change', UICtrl.changeType);
   };
 
   var updateBudget = function() {
@@ -301,6 +348,7 @@ var controller = (function(budgetCtrl, UICtrl) {
         totalExp: 0,
         percentage: -1
       });
+      UICtrl.displayMonth();
       eventListeners();
     }
   }
