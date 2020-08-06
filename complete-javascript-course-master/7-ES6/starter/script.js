@@ -147,6 +147,118 @@
 // var age = john[1];
 
 // es6
-const [name, age] = ['john', 26]
-// for objext
-const {firstName, lastName} = obj;
+// const [name, age] = ['john', 26]
+// // for objext
+// var obj = {
+// }
+// const {firstName, lastName} = obj;
+
+
+// arrays
+// const boxes = document.querySelectorAll('.box');
+
+
+// // es5
+// var boxesarr = Array.prototype.slice.call(boxes);
+// boxesarr.forEach(function(curr) {
+//   curr.style.backgroundColor = 'blue';
+// });
+
+// es6
+// const boxesArr = Array.from(boxes);
+// boxesArr.forEach(curr => curr.style.backgroundColor = 'blue');
+
+// looping over arrays
+// es5
+
+//  for (var i = 0; i < boxesArr.length; i++) {
+//    if(boxesArr[i].className === 'box blue') {
+//      continue;
+//    }
+
+//    boxesArr[i].textContent =  'I changed to blue';
+//  }
+
+// es6
+// for (const cur of boxesArr) {
+//   if (cur.className.includes('blue')) {
+//     continue;
+//   }
+//   cur.textContent = 'I changed to blue';
+// }
+
+// es5
+
+// var ages = [12, 32, 11, 14];
+// var full = ages.map(function(cur) {
+//   return cur >= 18;
+// });
+
+// full.indexOf(true);;
+// ages[full.indexOf(true)];
+
+// es6
+// ages.findIndex(cur => cur >= 18);
+// ages.find(cur => cur >= 18);
+
+// Spread operator
+
+// es5
+
+// function addFourAges(a, b, c, d) {
+//   return a + b + c + d;
+// }
+
+// var ages = [12, 11, 14, 16];
+// var sum2 = addFourAges.apply(null, ages);
+
+// // es6
+// const sum3 = addFourAges(...ages);
+
+// const smithFam = ['john', 'mary'];
+// const otherFam = ['jack', 'may'];
+
+// // to join them together
+// const bigFamily = [...smithFam, ...otherFam];
+
+// rest paramters (oppsite of spread operator)
+
+// es5
+// function isFullAge() {
+//   var args = Array.prototype.slice.call(arguments);
+//   args.forEach(function(cur) {
+//     console.log((2020 - cur) >= 18) ;
+//   })
+// }
+
+// isFullAge(1990, 1999, 1970);
+
+// es6
+// function isFullAge(...years) {
+//   years.forEach(cur => console.log((2020 - cur) >= 18))
+// }
+
+// isFullAge(1990, 2005, 1999, 1970);
+
+// default parameters
+
+// es5
+
+// function Smith(firstName, lastName, yob) {
+
+//   !lastName ? lastName = "Smith" : lastName = lastName;
+
+//   this.firstName = firstName;
+//   this.lastName = lastName;
+//   this.yob = yob;
+// }
+
+// var john = new Smith('John','', 1990);
+
+// function Smith(firstName, lastName = 'Smith', yob) {
+//   this.firstName = firstName;
+//   this.lastName = lastName;
+//   this.yob = yob;
+// }
+
+// var john = new Smith('john');
