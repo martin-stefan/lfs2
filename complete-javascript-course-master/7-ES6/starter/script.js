@@ -262,3 +262,38 @@
 // }
 
 // var john = new Smith('john');
+
+//  Maps
+
+const question = new Map();
+// key can be int, string, and bool
+
+question.set('question', " what is red?");
+question.set(1, 'color');
+question.set(2, 'shape');
+question.set(3, 'yes');
+question.set('correct', 1);
+question.set(true, 'Nice');
+question.set(false, 'Not nice');
+
+console.log(question.get('question'));
+console.log(question.size);
+
+// if (question.has(3)) {
+//   question.delete(3);
+// }
+
+// question.clear();
+
+question.forEach((value, key) => 
+console.log(key + value));
+
+for (let [key, value] of question.entries()) {
+  // console.log(`this is ${key} and I am ${value}`);
+  if (typeof(key) === 'number') {
+    console.log(`Answer ${key}: ${value}`);
+  }
+}
+
+const ans = parseInt(prompt('give answer'));
+console.log(question.get(ans === question.get('correct')));
