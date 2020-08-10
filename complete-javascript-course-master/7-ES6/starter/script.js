@@ -265,35 +265,115 @@
 
 //  Maps
 
-const question = new Map();
-// key can be int, string, and bool
+// const question = new Map();
+// // key can be int, string, and bool
 
-question.set('question', " what is red?");
-question.set(1, 'color');
-question.set(2, 'shape');
-question.set(3, 'yes');
-question.set('correct', 1);
-question.set(true, 'Nice');
-question.set(false, 'Not nice');
+// question.set('question', " what is red?");
+// question.set(1, 'color');
+// question.set(2, 'shape');
+// question.set(3, 'yes');
+// question.set('correct', 1);
+// question.set(true, 'Nice');
+// question.set(false, 'Not nice');
 
-console.log(question.get('question'));
-console.log(question.size);
+// console.log(question.get('question'));
+// console.log(question.size);
 
-// if (question.has(3)) {
-//   question.delete(3);
+// // if (question.has(3)) {
+// //   question.delete(3);
+// // }
+
+// // question.clear();
+
+// question.forEach((value, key) => 
+// console.log(key + value));
+
+// for (let [key, value] of question.entries()) {
+//   // console.log(`this is ${key} and I am ${value}`);
+//   if (typeof(key) === 'number') {
+//     console.log(`Answer ${key}: ${value}`);
+//   }
 // }
 
-// question.clear();
+// const ans = parseInt(prompt('give answer'));
+// console.log(question.get(ans === question.get('correct')));
 
-question.forEach((value, key) => 
-console.log(key + value));
+// Classes
 
-for (let [key, value] of question.entries()) {
-  // console.log(`this is ${key} and I am ${value}`);
-  if (typeof(key) === 'number') {
-    console.log(`Answer ${key}: ${value}`);
-  }
-}
+// es5
+// var Person = function(name, yob, job) {
+//   this.name = name;
+//   this.yob = yob;
+//   this.job = job;
+// }
 
-const ans = parseInt(prompt('give answer'));
-console.log(question.get(ans === question.get('correct')));
+// Person.prototype.calc = function() {
+//   var age = new Date().getFullYear() = this.yob;
+//   console.log(age);
+// }
+
+// var john = new Person('john', 1999, 'teacher');
+
+
+// es6 
+
+// class Person {
+//   constructor (name, yob, job) {
+//     this.name = name;
+//     this.yob = yob;
+//     this.job = job;
+//   }
+
+//   calc() {
+//     var age = new Date().getFullYear() = this.yob;
+//     console.log(age);
+//   }
+// }
+
+// const john = new Person('john', 1999, 'teacher');
+
+// classes and sub classes
+
+// es5
+// var Person = function(name, yob, job) {
+//     this.name = name;
+//     this.yob = yob;
+//     this.job = job;
+// }
+
+// Person.prototype.calc = function() {
+//   var age = new Date().getFullYear() = this.yob;
+//   console.log(age);
+// }
+
+// var Athlete = function(name, yob, job, games, medals) {
+//   Person.call(this, name, yob, job);
+//   this.games = games;
+//   this.medals = medals;
+// }
+
+
+// Athlete.prototype= Object.create(Person.prototype);
+
+// var john = Athlete('john', 1999, 'swimmer', 3, 5);
+
+// class Person {
+//   constructor (name, yob, job) {
+//     this.name = name;
+//     this.yob = yob;
+//     this.job = job;
+//   }
+
+//   calc() {
+//     var age = new Date().getFullYear() = this.yob;
+//     console.log(age);
+//   }
+// }
+
+// class Athlete extends Person {
+//   constructor(name, yob, job, games, medals) {
+//     super(name, yob, job);
+//     this.games = games;
+//     this.medals = medals;
+//   }
+// }
