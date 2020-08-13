@@ -86,20 +86,22 @@
         // });
 
         // async function always returns a promise
-        async function getRecipes() {
-            const ids = await getID;
-            console.log(ids);
-            const recipe = await getRecipe(ids[2]);
-            console.log(recipe);
-            const rel = await getRel('jonas');
-            console.log(rel);
+        // async function getRecipes() {
+        //     const ids = await getID;
+        //     console.log(ids);
+        //     const recipe = await getRecipe(ids[2]);
+        //     console.log(recipe);
+        //     const rel = await getRel('jonas');
+        //     console.log(rel);
 
-            return recipe;
-        }
+        //     return recipe;
+        // }
 
-        getRecipes().then(result => {
-            console.log(`${result} is great`);
-        });
+        // getRecipes().then(result => {
+        //     console.log(`${result} is great`);
+        // });
+
+        fetch('https://crossorigin.me/https://www.metaweather.com/api/location/2487956');
 
 
         
