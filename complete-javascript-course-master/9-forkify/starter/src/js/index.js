@@ -13,13 +13,13 @@ const controlSearch = async () => {
 
   if (query) {
     state.search = new Search(query);
-
-    
+    searchView.clearInput();
+    searchView.clearResults();
     await state.search.getResults();
-
-    console.log('here ----> ' + state.search.results);
-    searchView.renderResults(state.search.results);
+  
+    searchView.renderResults(state.search.result);
   }
+
 }
 
 elements.searchForm.addEventListener('submit', e => {
