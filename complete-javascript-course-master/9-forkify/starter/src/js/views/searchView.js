@@ -26,6 +26,7 @@ const renderRecipe = recipe => {
   elements.searchResList.insertAdjacentHTML('beforeend', markup);
 };
 
+
 export const renderResults = recipes => {
   recipes.forEach(renderRecipe); //automatically passes in current index
 };
