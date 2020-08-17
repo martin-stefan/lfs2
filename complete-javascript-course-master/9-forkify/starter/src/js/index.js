@@ -60,7 +60,7 @@ const controlRecipe = async () => {
     // create recipe object
     state.recipe = new Recipe(id);
 
-    try {
+    // try {
       // get recipe data and parse
       await state.recipe.getRecipe();
       state.recipe.parseIng();
@@ -72,9 +72,9 @@ const controlRecipe = async () => {
       // render recipe
       console.log(state.recipe);
 
-    } catch (error) {
-      alert('no recipe for you');
-    }
+    // } catch (error) {
+    //   alert('no recipe for you');
+    // }
   }
 }
 
