@@ -32,7 +32,8 @@ export default class Recipe {
 
   parseIng() {
     const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds'];
-    const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound']
+    const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound'];
+    const units = [...unitsShort, 'kg', 'g'];
 
     const newIng = this.ing.map(el => {
       // Uniform units
@@ -48,7 +49,7 @@ export default class Recipe {
 
       // Separate unit and ingredient
       const ingArr = ingredient.split(' ');
-      const unitIndex = ingArr.findIndex(el2 => unitsShort.includes(el2));
+      const unitIndex = ingArr.findIndex(el2 => units.includes(el2));
 
       let objIng;
       if (unitIndex > -1) {
