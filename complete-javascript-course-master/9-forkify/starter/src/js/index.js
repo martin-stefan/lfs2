@@ -10,8 +10,7 @@ import { elements, loader, clearLoader } from './views/base';
 const state = {};
 
 const controlSearch = async () => {
-  // const query = searchView.getInput();
-  const query = 'pizza';
+  const query = searchView.getInput();
 
   if (query) {
     state.search = new Search(query);
@@ -34,12 +33,6 @@ const controlSearch = async () => {
 }
 
 elements.searchForm.addEventListener('submit', e => {
-  e.preventDefault();
-  controlSearch();
-});
-
-// for testing
-window.addEventListener('load', e => {
   e.preventDefault();
   controlSearch();
 });
@@ -68,8 +61,9 @@ const controlRecipe = async () => {
     state.recipe = new Recipe(id);
 
     try {
-      // get recipe data
+      // get recipe data and parse
       await state.recipe.getRecipe();
+      state.recipe.parseIng();
   
       // calc servings and time
       state.recipe.calcTime();
