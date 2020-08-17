@@ -3,14 +3,15 @@ export const elements = {
   searchInput: document.querySelector('.search__field'),
   searchResults: document.querySelector('.results'),
   searchResList: document.querySelector('.results__list'),
-  searchResPages: document.querySelector('.results__pages')
+  searchResPages: document.querySelector('.results__pages'),
+  recipe: document.querySelector('.recipe')
 };
 
 export const elementStrings = {
   loader: 'loader'
 };
 
-export const loader = parent => {
+export const renderLoader = parent => {
   const loader = `
     <div class="${elementStrings.loader}">
       <svg>

@@ -17,6 +17,9 @@ const limitTitle = (title, limit = 17) => {
       if (acc + cur.length <= limit) {
         newTitle.push(cur);
       }
+      if (cur.length > limit) {
+        newTitle.push(cur.slice(0,17))
+      }
       return acc + cur.length
     }, 0);
 
