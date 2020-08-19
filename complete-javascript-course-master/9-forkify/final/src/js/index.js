@@ -128,7 +128,6 @@ elements.shopping.addEventListener('click', e => {
     if (e.target.matches('.shopping__delete, .shopping__delete *')) {
         // Delete from state
         state.list.deleteItem(id);
-
         // Delete from UI
         listView.deleteItem(id);
 
